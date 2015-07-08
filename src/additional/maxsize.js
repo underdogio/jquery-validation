@@ -28,4 +28,3 @@ $.validator.addMethod("maxsize", function(value, element, param) {
   // Return success (either we don't have access to files due to older browser or files looked good)
   return true;
 }, $.validator.format("Please submit a file that is under the maximum size."));
-
