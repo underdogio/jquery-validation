@@ -1344,26 +1344,22 @@ test( "cpfBR", function() {
 } );
 
 test( "file accept - image wildcard", function() {
-	console.log('wat2');
-
 	var input = acceptFileDummyInput( "test.png", "image/png" ),
 			$form = $( "<form />" ),
-			result = $.validator.methods.accept.call( new $.validator( {}, $form[ 0 ] ), null, input, "image/*" );
-	ok( result, "the selected file for upload has specified mime type" );
+			proxy = $.proxy( $.validator.methods.accept, new $.validator( {}, $form[ 0 ] ), null, input, "image/*" );
+	ok( proxy(), "the selected file for upload has specified mime type" );
 } );
 
 test( "file accept - specified mime type", function() {
-	var input = acceptFileDummyInput( "test.kml", "application/vnd.google-earth.kml+xml" );
-	// 		$form = $( "<form />" ),
-	// 		proxy = $.proxy( $.validator.methods.accept, new $.validator( {}, $form[ 0 ] ), null, input, "application/vnd.google-earth.kml+xml" );
-	// ok( proxy(), "the selected file for upload has specified mime type" );
-	ok(true);
+	var input = acceptFileDummyInput( "test.kml", "application/vnd.google-earth.kml+xml" ),
+			$form = $( "<form />" ),
+			proxy = $.proxy( $.validator.methods.accept, new $.validator( {}, $form[ 0 ] ), null, input, "application/vnd.google-earth.kml+xml" );
+	ok( proxy(), "the selected file for upload has specified mime type" );
 } );
 
 test( "file accept - invalid mime type", function() {
-	var input = acceptFileDummyInput( "test.kml", "foobar/vnd.google-earth.kml+xml" );
-	// 		$form = $( "<form />" ),
-	// 		proxy = $.proxy( $.validator.methods.accept, new $.validator( {}, $form[ 0 ] ), null, input, "application/vnd.google-earth.kml+xml" );
-	// equal( proxy(), false, "the selected file for upload has invalid mime type" );
-	ok(true);
+	var input = acceptFileDummyInput( "test.kml", "foobar/vnd.google-earth.kml+xml" ),
+			$form = $( "<form />" ),
+			proxy = $.proxy( $.validator.methods.accept, new $.validator( {}, $form[ 0 ] ), null, input, "application/vnd.google-earth.kml+xml" );
+	equal( proxy(), false, "the selected file for upload has invalid mime type" );
 } );
