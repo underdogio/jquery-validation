@@ -6,6 +6,8 @@ $.validator.addMethod( "accept", function( value, element, param ) {
 	optionalValue = this.optional( element ),
 	i, file, regex;
 
+	console.log('wat');
+
 	// Element is optional
 	if ( optionalValue ) {
 		return optionalValue;
